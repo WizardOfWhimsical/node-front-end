@@ -1,4 +1,4 @@
-import {useReducer} from 'react';
+import { useReducer } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import styles from './App.module.css';
 import './App.css';
@@ -35,18 +35,8 @@ function App() {
               )
             }
           />
-          <Route
-            path="/logon"
-            element={
-              <Logon />
-            }
-          />
-          <Route
-            path="/register"
-            element={
-              <Register />
-            }
-          />
+          <Route path="/logon" element={<Logon />} />
+          <Route path="/register" element={<Register />} />
           <Route path="/about" element={<About />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
