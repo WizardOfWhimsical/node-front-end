@@ -1,6 +1,12 @@
-import {useCallback, useContext, useEffect, useReducer, useState} from 'react';
-import {useNavigate} from 'react-router-dom';
-import {useSearchParams} from 'react-router';
+import {
+  useCallback,
+  useContext,
+  useEffect,
+  useReducer,
+  useState,
+} from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useSearchParams } from 'react-router';
 import AuthLogoff from '../../features/AuthLogoff/AuthLogoff';
 import TodoForm from '../../features/TodoForm';
 import TodoList from '../../features/TodoList/TodoList';
@@ -8,7 +14,7 @@ import TodoPaginationForm from '../../features/TodoPaginationForm';
 import TodosViewForm from '../../features/TodosViewForm';
 import {
   actions as userActions,
-  context as UserContext
+  context as UserContext,
 } from '../../reducers/user.reducer.js';
 import {
   reducer as todosReducer,
@@ -18,7 +24,7 @@ import {
 import styles from '../../App.module.css';
 
 // const urlBase = import.meta.env.VITE_BASE_URL;
-const urlBase='';
+const urlBase = '';
 
 function TodosPage() {
   const navigate = useNavigate();
@@ -31,7 +37,7 @@ function TodosPage() {
   const [total, setTotal] = useState(0);
   const [limit] = useState(10);
   const [todoState, dispatch] = useReducer(todosReducer, initialTodosState);
-  const {userState, dispatch: dispatchUser} = useContext(UserContext);
+  const { userState, dispatch: dispatchUser } = useContext(UserContext);
 
   const resetPage = () => {
     setPage(1);
@@ -118,7 +124,10 @@ function TodosPage() {
       };
 
       // const resp = await fetch(encodeUrl(), options);
-      const resp = await fetch(`${urlBase}/api/tasks/${editedTodo.id}`, options);
+      const resp = await fetch(
+        `${urlBase}/api/tasks/${editedTodo.id}`,
+        options
+      );
       if (resp.status === 401) {
         return onUnauthorized();
       }
@@ -152,7 +161,10 @@ function TodosPage() {
         },
         credentials: 'include',
       };
-      const resp = await fetch(`${urlBase}/api/tasks/${editedTodo.id}`, options);
+      const resp = await fetch(
+        `${urlBase}/api/tasks/${editedTodo.id}`,
+        options
+      );
       if (resp.status === 401) {
         return onUnauthorized();
       }
@@ -211,7 +223,7 @@ function TodosPage() {
   const onUnauthorized = useCallback(() => {
     dispatchUser({
       type: userActions.setAuthError,
-      error: 'Your session has timed out.'
+      error: 'Your session has timed out.',
     });
     dispatchUser({ type: userActions.clearUser });
     navigate('/');
@@ -224,7 +236,9 @@ function TodosPage() {
     if (queryString) {
       searchQuery = `&find=${queryString}`;
     }
-    return encodeURI(`${url}?page=${page}&limit=${limit}&${sortQuery}${searchQuery}`);
+    return encodeURI(
+      `${url}?page=${page}&limit=${limit}&${sortQuery}${searchQuery}`
+    );
   }, [page, limit, queryString, sortField, sortDirection]);
 
   useEffect(() => {
@@ -241,7 +255,7 @@ function TodosPage() {
         }
         if (resp.status === 404) {
           setTotal(0);
-          return dispatch({type: todoActions.loadTodos, tasks: []});
+          return dispatch({ type: todoActions.loadTodos, tasks: [] });
         }
         if (!resp.ok) {
           throw new Error(resp.message);
@@ -249,7 +263,7 @@ function TodosPage() {
         const taskResp = await resp.json();
         dispatch({
           type: todoActions.loadTodos,
-          tasks: taskResp.tasks
+          tasks: taskResp.tasks,
         });
         setTotal(taskResp.pagination.total);
       } catch (error) {
@@ -257,13 +271,7 @@ function TodosPage() {
       }
     };
     fetchTodos();
-  }, [
-    queryString,
-    sortDirection,
-    sortField,
-    encodeUrl,
-    onUnauthorized
-  ]);
+  }, [queryString, sortDirection, sortField, encodeUrl, onUnauthorized]);
 
   return (
     <>
