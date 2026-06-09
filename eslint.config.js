@@ -36,9 +36,9 @@ export default [
         'warn',
         { allowConstantExport: true },
       ],
-      'quotes': ['error', 'single'],
-      'indent': ['error', 2, {'SwitchCase': 1}],
-      'semi': ['error', 'always'],
+      // 'quotes': ['error', 'single'],
+      indent: ['error', 2, { SwitchCase: 1 }],
+      semi: ['error', 'always'],
     },
   },
 ];
