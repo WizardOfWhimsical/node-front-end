@@ -9,6 +9,7 @@ import NotFound from './pages/NotFound/NotFound';
 import Logon from './pages/Logon/Logon';
 import Register from './pages/Register/Register';
 import AuthPlaceholder from './features/AuthPlaceholder/AuthPlaceholder';
+// import StatsPage from './pages/Profile/ProfilePage';
 import {
   reducer as userReducer,
   initialState as initialUserState,
@@ -33,6 +34,12 @@ function App() {
               ) : (
                 <AuthPlaceholder />
               )
+            }
+          />
+          <Route
+            path="/stats"
+            element={
+              userState && userState.userData ? <>hello</> : <AuthPlaceholder />
             }
           />
           <Route path="/logon" element={<Logon />} />
