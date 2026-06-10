@@ -4,10 +4,7 @@ import { useEffect, useState, useContext } from 'react';
 import BarChart from './BarChart';
 import ProfileStats from './ProfileStats';
 // import ErrorDisplay from '../shared/ErrorDisplay';
-import {
-  actions as userActions,
-  context as UserContext,
-} from '../../reducers/user.reducer.js';
+import { context as UserContext } from '../../reducers/user.reducer.js';
 
 export default function ProfilePage() {
   const { userState } = useContext(UserContext);
@@ -25,10 +22,6 @@ export default function ProfilePage() {
     let firstPost = false;
 
     async function fetchTodos() {
-      // const options = {
-      //   headers: { 'X-CSRF-TOKEN': token },
-      // };
-
       try {
         setIsLoading(true);
         const response = await fetch('/api/tasks');
