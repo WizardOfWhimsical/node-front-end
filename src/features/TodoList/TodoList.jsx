@@ -11,23 +11,22 @@ function TodoList({
   statusFilter,
 }) {
   const filteredList = useMemo(() => {
-    console.log('filtering list...\n', todoState);
+    const { todoList } = todoState;
     let todos,
       message = null;
+    todoState.isLoading = true;
     switch (statusFilter) {
       case 'completed':
-        console.log('completed');
+        todos = todoList.filter((todo) => todo.isCompleted);
         break;
       case 'active':
-        console.log('active');
+        todos = todoList.filter((todo) => !todo.isCompleted);
         break;
       case 'all':
-        console.log('all');
+        todos = todoList;
         break;
-      default:
-        console.log('default');
     }
-    return { todos, message };
+    return todos;
   }, [todoState, statusFilter]);
 
   return (
@@ -36,15 +35,17 @@ function TodoList({
         <p>Todo list loading...</p>
       ) : (
         <>
-          {todoState.todoList.length === 0 ? (
-            <p>
-              {queryString
-                ? 'Todos not found...'
-                : 'Add a todo above to get started'}
-            </p>
+          {filteredList.length === 0 ? (
+            <>
+              <p>
+                {queryString
+                  ? 'Might be done for the day'
+                  : 'Do you need to add something to the day?'}
+              </p>
+            </>
           ) : (
             <ul className={styles.todoList}>
-              {todoState.todoList.map((todo) => (
+              {filteredList.map((todo) => (
                 <TodoListItem
                   key={todo.id}
                   todo={todo}
