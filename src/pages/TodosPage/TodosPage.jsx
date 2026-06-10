@@ -289,6 +289,7 @@ function TodosPage() {
         onCompleteTodo={completeTodo}
         onUpdateTodo={updateTodo}
         onDeleteTodo={deleteTodo}
+        statusFilter={statusFilter}
       />
       <TodoPaginationForm
         isLoading={todoState.isLoading}
@@ -306,7 +307,7 @@ function TodosPage() {
         sortField={sortField}
         setSortField={handleSortFieldChange}
       />
-
+      <StatusFilter />
       {todoState.errorMessage && (
         <div className={styles.errorWrapper}>
           <hr />
