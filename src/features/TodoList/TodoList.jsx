@@ -12,8 +12,7 @@ function TodoList({
 }) {
   const filteredList = useMemo(() => {
     const { todoList } = todoState;
-    let todos,
-      message = null;
+    let todos = null;
     todoState.isLoading = true;
     switch (statusFilter) {
       case 'completed':
