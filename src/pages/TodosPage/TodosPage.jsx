@@ -47,7 +47,7 @@ function TodosPage() {
     setSearchParams(searchParams);
   };
 
-  const statusFilter = filterParams.get('status') || 'all';
+  const statusFilter = filterParams.get('status') || 'active';
 
   const handleSortDirectionChange = useCallback((newSortDirection) => {
     setSortDirection(newSortDirection);

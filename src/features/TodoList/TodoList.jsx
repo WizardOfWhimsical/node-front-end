@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import TodoListItem from './TodoListItem';
 import styles from './TodoList.module.css';
 
@@ -9,6 +10,26 @@ function TodoList({
   onDeleteTodo,
   statusFilter,
 }) {
+  const filteredList = useMemo(() => {
+    console.log('filtering list...\n', todoState);
+    let todos,
+      message = null;
+    switch (statusFilter) {
+      case 'completed':
+        console.log('completed');
+        break;
+      case 'active':
+        console.log('active');
+        break;
+      case 'all':
+        console.log('all');
+        break;
+      default:
+        console.log('default');
+    }
+    return { todos, message };
+  }, [todoState, statusFilter]);
+
   return (
     <>
       {todoState.isLoading ? (
