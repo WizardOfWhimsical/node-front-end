@@ -47,7 +47,7 @@ export default function BarChart({ total, active, completed, name }) {
     },
     plugins: {
       legend: {
-        title: { display: true, text: ['here i am', 'another one'] },
+        title: { display: true, text: [`${name}'s Completion Stats`] },
         labels: {
           font: { size: 18 },
         },

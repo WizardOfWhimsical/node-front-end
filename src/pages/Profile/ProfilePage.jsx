@@ -1,11 +1,17 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 // import { get } from '../utils/api';
 // import { useAuth } from '../hooks/useAuth';
-import BarChart from '../utils/BarChart';
-import ProfileStats from '../utils/ProfileStats';
-import ErrorDisplay from '../shared/ErrorDisplay';
+import BarChart from './BarChart';
+import ProfileStats from './ProfileStats';
+// import ErrorDisplay from '../shared/ErrorDisplay';
+import {
+  actions as userActions,
+  context as UserContext,
+} from '../../reducers/user.reducer.js';
 
 export default function ProfilePage() {
+  const { userState } = useContext(UserContext);
+
   const [todoStats, setToDoStats] = useState({});
 
   const [error, setError] = useState('');
@@ -15,21 +21,21 @@ export default function ProfilePage() {
   const { total, active, completed } = todoStats;
 
   useEffect(() => {
-    if (!token) return;
+    // if (!token) return;
     let firstPost = false;
 
     async function fetchTodos() {
-      const options = {
-        headers: { 'X-CSRF-TOKEN': token },
-      };
+      // const options = {
+      //   headers: { 'X-CSRF-TOKEN': token },
+      // };
 
       try {
         setIsLoading(true);
-        const data = await get(`tasks`, options);
+        const response = await fetch('/api/tasks');
+        const data = (await response.json()).tasks;
 
         if (!firstPost) {
           setError('');
-
           const total = data.length;
           const completed = data.filter((todo) => todo.isCompleted).length;
           const active = total - completed;
@@ -47,11 +53,11 @@ export default function ProfilePage() {
       console.log('one render ran clean up');
       firstPost = true;
     };
-  }, [token]);
+  }, []);
 
   return (
     <>
-      {error && <ErrorDisplay error={error} onClick={() => setError('')} />}
+      {/* {error && <ErrorDisplay error={error} onClick={() => setError('')} />} */}
       {isloading ? (
         <h1> One moment while we calculate...</h1>
       ) : (
@@ -59,12 +65,12 @@ export default function ProfilePage() {
           total={total}
           active={active}
           completed={completed}
-          name={email}
+          name={userState.userData.name}
         />
       )}
       <hr />
       <ProfileStats
-        name={email}
+        name={userState.userData.name}
         total={total}
         active={active}
         completed={completed}
