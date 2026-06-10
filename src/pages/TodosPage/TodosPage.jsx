@@ -12,6 +12,7 @@ import TodoForm from '../../features/TodoForm';
 import TodoList from '../../features/TodoList/TodoList';
 import TodoPaginationForm from '../../features/TodoPaginationForm';
 import TodosViewForm from '../../features/TodosViewForm';
+import StatusFilter from '../../shared/StatusFilter.jsx';
 import {
   actions as userActions,
   context as UserContext,
@@ -33,6 +34,7 @@ function TodosPage() {
   const [sortDirection, setSortDirection] = useState('desc');
   const [sortField, setSortField] = useState('createdAt');
   const [queryString, setQueryString] = useState('');
+  const [filterParams] = useSearchParams('');
   const [page, setPage] = useState(parseInt(searchParams.get('page')) || 1);
   const [total, setTotal] = useState(0);
   const [limit] = useState(10);
@@ -44,6 +46,8 @@ function TodosPage() {
     searchParams.delete('page');
     setSearchParams(searchParams);
   };
+
+  const statusFilter = filterParams.get('status') || 'all';
 
   const handleSortDirectionChange = useCallback((newSortDirection) => {
     setSortDirection(newSortDirection);
