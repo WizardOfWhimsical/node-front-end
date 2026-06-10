@@ -1,7 +1,14 @@
 import TodoListItem from './TodoListItem';
 import styles from './TodoList.module.css';
 
-function TodoList({ todoState, queryString, onCompleteTodo, onUpdateTodo, onDeleteTodo }) {
+function TodoList({
+  todoState,
+  queryString,
+  onCompleteTodo,
+  onUpdateTodo,
+  onDeleteTodo,
+  statusFilter,
+}) {
   return (
     <>
       {todoState.isLoading ? (
@@ -10,12 +17,11 @@ function TodoList({ todoState, queryString, onCompleteTodo, onUpdateTodo, onDele
         <>
           {todoState.todoList.length === 0 ? (
             <p>
-              {queryString ?
-                'Todos not found...' :
-                'Add a todo above to get started'
-              }
+              {queryString
+                ? 'Todos not found...'
+                : 'Add a todo above to get started'}
             </p>
-          ):(
+          ) : (
             <ul className={styles.todoList}>
               {todoState.todoList.map((todo) => (
                 <TodoListItem
