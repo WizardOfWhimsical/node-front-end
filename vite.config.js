@@ -6,6 +6,11 @@ export default ({ mode }) => {
   // eslint-disable-next-line
   const env = loadEnv(mode, process.cwd(), '');
   return defineConfig({
+    css: {
+      modules: {
+        localsConvention: 'camelCase',
+      },
+    },
     plugins: [react()],
     server: {
       port: 3001,
