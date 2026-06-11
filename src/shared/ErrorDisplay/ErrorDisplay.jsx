@@ -1,4 +1,4 @@
-import { Button } from 'react-bootstrap';
+// import { Button } from 'react-bootstrap';
 import styles from './ErrorDisplay.module.css';
 
 export default function ErrorDisplay({ error, onClick }) {
@@ -10,9 +10,9 @@ export default function ErrorDisplay({ error, onClick }) {
           <br />
           {error}
         </p>
-        <Button className={styles.errorBtn} type="button" onClick={onClick}>
+        <button className={styles.errorBtn} type="button" onClick={onClick}>
           Close
-        </Button>
+        </button>
       </div>
     </div>
   );
