@@ -1,16 +1,17 @@
-import {useContext, useEffect, useState} from 'react';
-import {useNavigate} from 'react-router-dom';
+import { useContext, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
   actions as userActions,
   context as UserContext,
 } from '../../reducers/user.reducer';
+import ErrorDisplay from '../../shared/ErrorDisplay/index';
 
 // const urlBase = import.meta.env.VITE_BASE_URL;
 const urlBase = '';
 
 function Logon() {
   const navigate = useNavigate();
-  const {dispatch, userState} = useContext(UserContext);
+  const { dispatch, userState } = useContext(UserContext);
 
   const [userEmail, setUserEmail] = useState('');
 
@@ -41,13 +42,13 @@ function Logon() {
   };
 
   const setError = (error) => {
-    dispatch({type: userActions.setAuthError, error: error});
+    dispatch({ type: userActions.setAuthError, error: error });
   };
 
   useEffect(() => {
     return () => {
       // clear auth error on component destruction (page changed)
-      dispatch({type: userActions.clearAuthError});
+      dispatch({ type: userActions.clearAuthError });
     };
   }, [dispatch]);
 
@@ -67,11 +68,13 @@ function Logon() {
             name="email"
             placeholder="Email"
             value={userEmail}
-            onChange={(e) => {setUserEmail(e.target.value);}}
+            onChange={(e) => {
+              setUserEmail(e.target.value);
+            }}
           />
           <br></br>
           <label htmlFor="password3">Password: </label>
-          <input id="password3" name="password" type="password"/>
+          <input id="password3" name="password" type="password" />
           <br></br>
           <button type="submit">Submit</button>
           <button
@@ -82,7 +85,13 @@ function Logon() {
           >
             Cancel
           </button>
-          {userState?.errorMessage && <p>{userState?.errorMessage}</p>}
+          {/* {userState?.errorMessage && <p>{userState?.errorMessage}</p>} */}
+          {userState?.errorMessage && (
+            <ErrorDisplay
+              error={userState.errorMessage}
+              onClick={dispatch({ type: userActions.clearAuthError })}
+            />
+          )}
         </form>
       ) : (
         <p>Authorization...</p>

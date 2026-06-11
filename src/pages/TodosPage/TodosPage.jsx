@@ -22,7 +22,8 @@ import {
   actions as todoActions,
   initialState as initialTodosState,
 } from '../../reducers/todos.reducer';
-import styles from '../../App.module.css';
+// import styles from '../../App.module.css';
+import ErrorDisplay from '../../shared/ErrorDisplay/ErrorDisplay.jsx';
 
 // const urlBase = import.meta.env.VITE_BASE_URL;
 const urlBase = '';
@@ -308,7 +309,7 @@ function TodosPage() {
         setSortField={handleSortFieldChange}
       />
       <StatusFilter />
-      {todoState.errorMessage && (
+      {/* {todoState.errorMessage && (
         <div className={styles.errorWrapper}>
           <hr />
           <p>{todoState.errorMessage}</p>
@@ -319,6 +320,12 @@ function TodosPage() {
             Dismiss Error Message
           </button>
         </div>
+      )} */}
+      {todoState?.errorMessage && (
+        <ErrorDisplay
+          error={todoState.errorMessage}
+          onClick={() => dispatch({ type: todoActions.clearError })}
+        />
       )}
     </>
   );

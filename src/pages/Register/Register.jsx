@@ -1,10 +1,11 @@
-import {useContext, useState, useEffect} from 'react';
-import {useNavigate} from 'react-router-dom';
+import { useContext, useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
   actions as userActions,
   context as UserContext,
 } from '../../reducers/user.reducer';
 import ReCAPTCHA from 'react-google-recaptcha';
+import ErrorDisplay from '../../shared/ErrorDisplay/ErrorDisplay.jsx';
 
 // const urlBase = import.meta.env.VITE_BASE_URL;
 const urlBase = '';
@@ -12,7 +13,7 @@ const siteKey = import.meta.env.VITE_RECAPTCHA_SITE_KEY;
 
 function Register() {
   const navigate = useNavigate();
-  const {dispatch, userState} = useContext(UserContext);
+  const { dispatch, userState } = useContext(UserContext);
 
   const [userName, setUserName] = useState('');
   const [userEmail, setUserEmail] = useState('');
@@ -40,10 +41,13 @@ function Register() {
       });
       const data = await res.json();
       if (res.status === 201 && data.user && data.csrfToken) {
-        dispatch({ type: userActions.loadUser, payload: {
-          name: data.user.name,
-          csrfToken: data.csrfToken
-        }});
+        dispatch({
+          type: userActions.loadUser,
+          payload: {
+            name: data.user.name,
+            csrfToken: data.csrfToken,
+          },
+        });
         navigate('/');
       } else if (res.status === 400 && data.message) {
         setError(data.message);
@@ -56,13 +60,13 @@ function Register() {
   };
 
   const setError = (error) => {
-    dispatch({type: userActions.setAuthError, error: error});
+    dispatch({ type: userActions.setAuthError, error: error });
   };
 
   useEffect(() => {
     return () => {
       // clear auth error on component destruction (page changed)
-      dispatch({type: userActions.clearAuthError});
+      dispatch({ type: userActions.clearAuthError });
     };
   }, [dispatch]);
 
@@ -74,7 +78,7 @@ function Register() {
             e.preventDefault();
             const values = e.target.elements;
             if (values.password.value !== values.passwordConfirmation.value) {
-              setError('The passwords entered didn\'t match.');
+              setError("The passwords entered didn't match.");
               return;
             }
             handleRegisterSubmit(
@@ -90,7 +94,9 @@ function Register() {
             name="name"
             id="name"
             value={userName}
-            onChange={(e) => {setUserName(e.target.value);}}
+            onChange={(e) => {
+              setUserName(e.target.value);
+            }}
             placeholder="Name"
           />
           <br></br>
@@ -99,20 +105,19 @@ function Register() {
             id="email"
             name="email"
             value={userEmail}
-            onChange={(e) => {setUserEmail(e.target.value);}}
+            onChange={(e) => {
+              setUserEmail(e.target.value);
+            }}
             placeholder="Email"
           />
           <br></br>
           <label htmlFor="password1">Your New Password: </label>
-          <input id="password1" name="password" type="password"/>
+          <input id="password1" name="password" type="password" />
           <br></br>
           <label htmlFor="password2">Confirm Your Password: </label>
-          <input id="password2" name="passwordConfirmation" type="password"/>
+          <input id="password2" name="passwordConfirmation" type="password" />
           <br></br>
-          <ReCAPTCHA
-            sitekey={siteKey}
-            onChange={(token) => setToken(token)}
-          />
+          <ReCAPTCHA sitekey={siteKey} onChange={(token) => setToken(token)} />
           <button type="submit">Submit</button>
           <button
             type="button"
@@ -122,7 +127,13 @@ function Register() {
           >
             Cancel
           </button>
-          {userState?.errorMessage && <p>{userState?.errorMessage}</p>}
+          {/* {userState?.errorMessage && <p>{userState?.errorMessage}</p>} */}
+          {userState?.errorMessage && (
+            <ErrorDisplay
+              error={userState?.errorMessage}
+              onClick={() => dispatch({ type: userActions.clearAuthError })}
+            />
+          )}
         </form>
       ) : (
         <p>Authorization...</p>
