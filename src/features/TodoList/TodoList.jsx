@@ -25,6 +25,7 @@ function TodoList({
         todos = todoList;
         break;
     }
+    todoState.isLoading = false;
     return todos;
   }, [todoState, statusFilter]);
 
@@ -35,13 +36,11 @@ function TodoList({
       ) : (
         <>
           {filteredList.length === 0 ? (
-            <>
-              <p>
-                {queryString
-                  ? 'Might be done for the day'
-                  : 'Do you need to add something to the day?'}
-              </p>
-            </>
+            <p>
+              {queryString
+                ? 'Might be done for the day'
+                : 'Do you need to add something to the day?'}
+            </p>
           ) : (
             <ul className={styles.todoList}>
               {filteredList.map((todo) => (
