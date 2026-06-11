@@ -1,9 +1,14 @@
 import { NavLink } from 'react-router';
 import styles from './Header.module.css';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import { useLocation } from 'react-router-dom';
+import {
+  // actions as userActions,
+  context as UserContext,
+} from '../reducers/user.reducer';
 
 function Header() {
+  const { userState } = useContext(UserContext);
   const [title, setTitle] = useState('Todo List');
   const location = useLocation();
   useEffect(() => {
@@ -15,6 +20,8 @@ function Header() {
       setTitle('Todo List Register');
     } else if (location.pathname === '/about') {
       setTitle('About');
+    } else if (location.pathname === '/stats') {
+      setTitle('Profile Stats');
     } else {
       setTitle('Not Found');
     }
@@ -39,6 +46,16 @@ function Header() {
         >
           About
         </NavLink>
+        {userState?.userData?.name && userState?.userData?.csrfToken && (
+          <NavLink
+            className={({ isActive }) =>
+              isActive ? styles.current : styles.inactive
+            }
+            to={'/stats'}
+          >
+            Stats
+          </NavLink>
+        )}
       </nav>
     </header>
   );
