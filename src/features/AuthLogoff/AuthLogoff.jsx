@@ -1,11 +1,15 @@
-import {useContext, useState} from 'react';
-import {actions as userActions, context as UserContext} from '../../reducers/user.reducer.js';
+import { useContext, useState } from 'react';
+import {
+  actions as userActions,
+  context as UserContext,
+} from '../../reducers/user.reducer.js';
+import ErrorDisplay from '../../shared/ErrorDisplay/index.js';
 
 // const urlBase = import.meta.env.VITE_BASE_URL;
-const urlBase='';
+const urlBase = '';
 
 function AuthLogoff() {
-  const {dispatch, userState} = useContext(UserContext);
+  const { dispatch, userState } = useContext(UserContext);
   const [errorTimeout, setErrorTimeout] = useState(null);
 
   const handleLogoff = async () => {
@@ -33,21 +37,30 @@ function AuthLogoff() {
   };
 
   const setError = (error) => {
-    dispatch({type: userActions.setAuthError, error: error});
+    dispatch({ type: userActions.setAuthError, error: error });
     clearTimeout(errorTimeout);
-    setErrorTimeout(setTimeout(() => {
-      dispatch({type: userActions.clearAuthError});
-    }, 7000));
+    setErrorTimeout(
+      setTimeout(() => {
+        dispatch({ type: userActions.clearAuthError });
+      }, 7000)
+    );
   };
-
+  //i think this will show the error and remove it itself...
   return (
     <>
       <p>{userState?.userData?.name} is logged on.</p>
-      {!userState.isLoading ?
-        <button onClick={handleLogoff}>Logoff</button> :
+      {!userState.isLoading ? (
+        <button onClick={handleLogoff}>Logoff</button>
+      ) : (
         <button>Processing...</button>
-      }
-      {userState?.errorMessage && <p>{userState?.errorMessage}</p>}
+      )}
+      {userState?.errorMessage && (
+        <ErrorDisplay
+          error={userState?.errorMessage}
+          onClick={() => dispatch({ type: userActions.clearAuthError })}
+        />
+      )}
+      {/* {userState?.errorMessage && <p>{userState?.errorMessage}</p>} */}
     </>
   );
 }
