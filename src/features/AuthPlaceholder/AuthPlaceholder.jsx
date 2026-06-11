@@ -1,15 +1,20 @@
-import {useContext} from 'react';
-import {useNavigate} from 'react-router-dom';
+import { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import AuthGoogleButton from './AuthGoogleButton';
-import {actions as userActions, context as UserContext} from '../../reducers/user.reducer.js';
+import {
+  actions as userActions,
+  context as UserContext,
+} from '../../reducers/user.reducer.js';
+import ErrorDisplay from '../../shared/ErrorDisplay/index.js';
+
 const googleClientId = import.meta.env.VITE_GOOGLE_CLIENT_ID;
 
 function AuthPlaceholder() {
   const navigate = useNavigate();
-  const {dispatch, userState} = useContext(UserContext);
+  const { dispatch, userState } = useContext(UserContext);
 
   const clearError = () => {
-    dispatch({type: userActions.clearAuthError});
+    dispatch({ type: userActions.clearAuthError });
   };
 
   return (
@@ -18,7 +23,7 @@ function AuthPlaceholder() {
         <>
           <button
             onClick={() => {
-              clearError();
+              // clearError();
               navigate('/logon');
             }}
           >
@@ -26,16 +31,23 @@ function AuthPlaceholder() {
           </button>
           <button
             onClick={() => {
-              clearError();
+              // clearError();
               navigate('/register');
             }}
           >
             Register
           </button>
+          {/* //trying to break this by adding s to the env */}
           {googleClientId && <br></br> && <AuthGoogleButton />}
           <br></br>
           <br></br>
-          {userState?.errorMessage && <p>{userState?.errorMessage}</p>}
+          {userState?.errorMessage && (
+            <ErrorDisplay
+              error={userState?.errorMessage}
+              onClick={() => clearError()}
+            />
+          )}
+          {/* {userState?.errorMessage && <p>{userState?.errorMessage}</p>} */}
         </>
       ) : (
         <p>Authorization...</p>
