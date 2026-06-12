@@ -1,7 +1,13 @@
 .todo {
-  margin-bottom: 0.25rem;
-}
-/* span {
-  width: 500px;
+  width: 100%;
   display: flex;
-} */
+  align-items: center;
+  justify-content: start;
+  margin-bottom: 8px;
+  padding: 4px 0;
+}
+
+.todo label + button {
+  display: block;
+  margin-left: 40px;
+}
