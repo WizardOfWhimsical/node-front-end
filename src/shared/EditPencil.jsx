@@ -1,10 +1,10 @@
-import { FaPencil, FaEraser } from 'react-icons/fa6';
+import { FaPenNib, FaEraser } from 'react-icons/fa6';
 
 export default function ToolBar({ pencilOnClick, eraserOnClick }) {
   return (
     <div className={toolbarContainer}>
       <button className={buttonStyle} onClick={pencilOnClick}>
-        <FaPencil />
+        <FaPenNib />
       </button>
       <button className={buttonStyle} onClick={eraserOnClick}>
         <FaEraser />
