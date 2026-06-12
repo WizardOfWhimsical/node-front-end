@@ -68,7 +68,7 @@ input[type='text'] {
   /* max-width: 300px; */
   justify-self: stretch;
   height: 28px;
-  margin-left: auto;
+  /* margin-left: auto; */
 }
 
 input[type='checkbox'] {

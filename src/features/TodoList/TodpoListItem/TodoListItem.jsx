@@ -36,18 +36,18 @@ function TodoListItem({ todo, onCompleteTodo, onUpdateTodo, onDeleteTodo }) {
     onUpdateTodo({ ...todo, title: workingTitle });
     setIsEditing(false);
   }
-  function handleDelete(event) {
-    if (!isEditing) {
-      return;
-    }
-    event.preventDefault();
-    onDeleteTodo({ ...todo, title: workingTitle });
-    setIsEditing(false);
-  }
-  function eraserDelete(e) {
-    e.preventDefault();
-    onDeleteTodo({ ...todo, title: workingTitle });
-  }
+  // function handleDelete(event) {
+  //   if (!isEditing) {
+  //     return;
+  //   }
+  //   event.preventDefault();
+  //   onDeleteTodo({ ...todo, title: workingTitle });
+  //   setIsEditing(false);
+  // }
+  // function eraserDelete(e) {
+  //   e.preventDefault();
+  //   onDeleteTodo({ ...todo, title: workingTitle });
+  // }
   return (
     <li className={styles.todoContainer}>
       <form onSubmit={handleUpdate}>
