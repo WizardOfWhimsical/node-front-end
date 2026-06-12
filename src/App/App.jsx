@@ -21,8 +21,8 @@ function App() {
 
   return (
     <UserContext.Provider value={{ userState, dispatch }}>
+      <Header />
       <div className={styles.routesContainer}>
-        <Header />
         <Routes>
           <Route
             path="/"
