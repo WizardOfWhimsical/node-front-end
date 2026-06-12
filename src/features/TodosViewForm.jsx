@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { styled } from 'styled-components';
 
 function TodosViewForm({
   queryString,
@@ -28,22 +27,20 @@ function TodosViewForm({
   }
 
   return (
-    <StyledForm onSubmit={preventRefresh}>
-      <div className="controlGroup">
-        <label>
-          Search todos:
-          <input
-            type="text"
-            id="search"
-            value={localQueryString}
-            onChange={(e) => setLocalQueryString(e.target.value)}
-          />
-        </label>
+    <form onSubmit={preventRefresh}>
+      <div>
+        <label htmlFor="search">Search todos:</label>
+        <input
+          type="text"
+          id="search"
+          value={localQueryString}
+          onChange={(e) => setLocalQueryString(e.target.value)}
+        />
         <button type="button" onClick={() => setLocalQueryString('')}>
           Clear
         </button>
       </div>
-      <div className="controlGroup">
+      <div>
         <label>
           Sort by
           <select
@@ -70,18 +67,8 @@ function TodosViewForm({
           </select>
         </label>
       </div>
-    </StyledForm>
+    </form>
   );
 }
-
-const StyledForm = styled.form`
-  & > * {
-    margin: 0.5rem 0;
-  }
-  .controlGroup {
-    display: flex;
-    gap: 0.5rem;
-  }
-`;
 
 export default TodosViewForm;

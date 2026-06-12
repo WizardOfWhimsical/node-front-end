@@ -1,12 +1,11 @@
 import { useReducer } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import styles from './App.module.css';
-import './App.css';
 import TodosPage from '../pages/TodosPage/TodosPage';
 import About from '../pages/About/About';
 import Header from '../shared/Header';
 import NotFound from '../pages/NotFound/NotFound';
-import Logon from '../pages/Logon/Logon';
+import Logon from '../pages/Logon';
 import Register from '../pages/Register/Register';
 import AuthPlaceholder from '../features/AuthPlaceholder/AuthPlaceholder';
 import StatsPage from '../pages/Profile/ProfilePage';
@@ -15,7 +14,6 @@ import {
   initialState as initialUserState,
   context as UserContext,
 } from '../reducers/user.reducer';
-
 // const token = `Bearer ${import.meta.env.VITE_PAT}`;
 
 function App() {
@@ -23,8 +21,8 @@ function App() {
 
   return (
     <UserContext.Provider value={{ userState, dispatch }}>
-      <div className={styles.wrapper}>
-        <Header />
+      <Header />
+      <div className={styles.routesContainer}>
         <Routes>
           <Route
             path="/"

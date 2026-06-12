@@ -64,12 +64,15 @@ label {
   }
 }
 
-input {
-  max-width: 300px;
+input[type='text'] {
+  /* max-width: 300px; */
+  justify-self: stretch;
+  height: 28px;
+  /* margin-left: auto; */
 }
 
 input[type='checkbox'] {
-  scale: 2;
+  scale: 1.5;
 }
 
 button {
@@ -107,18 +110,20 @@ input[type='checkbox']:hover {
 
 /* 
 All implecite classes that need to be global
+have to camel case becase jsx is fighting me for the render and to use local convention has to be a module.css
 */
-.form-control {
+.formControl {
   border-radius: 10px;
   line-height: 1.25em;
   font-size: 1.1em;
   padding: 6px 12px;
-  border: 1px solid #aaa;
+  border: 4px solid green;
+  /* border: 1px solid #aaa; */
   box-sizing: border-box;
   margin-bottom: 12px;
 }
 
-.flex-column {
+.flexColumn {
   display: flex;
   flex-direction: column;
 }

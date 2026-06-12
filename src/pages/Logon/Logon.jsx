@@ -5,6 +5,7 @@ import {
   context as UserContext,
 } from '../../reducers/user.reducer';
 import ErrorDisplay from '../../shared/ErrorDisplay/index';
+import styles from './LogonPage.module.css';
 
 // const urlBase = import.meta.env.VITE_BASE_URL;
 const urlBase = '';
@@ -56,7 +57,7 @@ function Logon() {
     <>
       {!userState?.isLoading ? (
         <form
-          className="formControl"
+          className={styles.loginContainer}
           onSubmit={(e) => {
             e.preventDefault();
             const values = e.target.elements;

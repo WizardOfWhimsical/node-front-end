@@ -6,7 +6,7 @@ import {
 } from '../../reducers/user.reducer';
 import ReCAPTCHA from 'react-google-recaptcha';
 import ErrorDisplay from '../../shared/ErrorDisplay/ErrorDisplay.jsx';
-
+import styles from './Register.module.css';
 // const urlBase = import.meta.env.VITE_BASE_URL;
 const urlBase = '';
 const siteKey = import.meta.env.VITE_RECAPTCHA_SITE_KEY;
@@ -74,6 +74,7 @@ function Register() {
     <>
       {!userState?.isLoading ? (
         <form
+          className={styles.loginContainer}
           onSubmit={(e) => {
             e.preventDefault();
             const values = e.target.elements;

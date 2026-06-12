@@ -1,6 +1,9 @@
-.todoList {
-  list-style: none;
-  width: 90vw;
-  max-width: 500px;
-  padding: 0;
+.todo-list {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 16px 0;
+  padding-left: 1px;
 }

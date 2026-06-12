@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import TextInputWithLabel from '../../../shared/TextInputWithLabel';
 import ToolBar from '../../../shared/EditPencil';
+import { FaArrowsRotate, FaBan } from 'react-icons/fa6';
 import styles from './TodoListItem.module.css';
 
 function TodoListItem({ todo, onCompleteTodo, onUpdateTodo, onDeleteTodo }) {
@@ -35,23 +36,23 @@ function TodoListItem({ todo, onCompleteTodo, onUpdateTodo, onDeleteTodo }) {
     onUpdateTodo({ ...todo, title: workingTitle });
     setIsEditing(false);
   }
-  function handleDelete(event) {
-    if (!isEditing) {
-      return;
-    }
-    event.preventDefault();
-    onDeleteTodo({ ...todo, title: workingTitle });
-    setIsEditing(false);
-  }
-  function eraserDelete(e) {
-    e.preventDefault();
-    onDeleteTodo({ ...todo, title: workingTitle });
-  }
+  // function handleDelete(event) {
+  //   if (!isEditing) {
+  //     return;
+  //   }
+  //   event.preventDefault();
+  //   onDeleteTodo({ ...todo, title: workingTitle });
+  //   setIsEditing(false);
+  // }
+  // function eraserDelete(e) {
+  //   e.preventDefault();
+  //   onDeleteTodo({ ...todo, title: workingTitle });
+  // }
   return (
-    <li className={styles.todo}>
+    <li className={styles.todoContainer}>
       <form onSubmit={handleUpdate}>
         {isEditing ? (
-          <>
+          <div className={styles.todo}>
             <TextInputWithLabel
               value={workingTitle}
               //take this
@@ -61,18 +62,18 @@ function TodoListItem({ todo, onCompleteTodo, onUpdateTodo, onDeleteTodo }) {
               elementId={todo.id}
             />
             <button type="button" onClick={handleCancel}>
-              Cancel
+              <FaBan size={16} />
             </button>
-            <button type="button" onClick={handleDelete}>
+            {/* <button type="button" onClick={handleDelete}>
               Delete
-            </button>
+            </button> */}
             <button type="button" onClick={handleUpdate}>
-              Update
+              <FaArrowsRotate size={16} />
             </button>
-          </>
+          </div>
         ) : (
           <>
-            <span className="listitem">
+            <span className={styles.todo}>
               <label>
                 <input
                   type="checkbox"
@@ -81,8 +82,7 @@ function TodoListItem({ todo, onCompleteTodo, onUpdateTodo, onDeleteTodo }) {
                   onChange={() => onCompleteTodo(todo.id)}
                 />
               </label>
-
-              {todo.title}
+              <>{todo.title}</>
               <ToolBar
                 pencilOnClick={() => setIsEditing(true)}
                 eraserOnClick={() =>

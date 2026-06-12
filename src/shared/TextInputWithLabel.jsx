@@ -7,7 +7,7 @@ function TextInputWithLabel({
   label,
 }) {
   return (
-    <>
+    <div className="flexColumn">
       <label htmlFor={elementId}>{label}</label>
       <input
         type="text"
@@ -17,7 +17,7 @@ function TextInputWithLabel({
         onChange={onChange}
         onKeyDown={onKeyDown}
       />
-    </>
+    </div>
   );
 }
 

@@ -4,10 +4,10 @@ export default function ToolBar({ pencilOnClick, eraserOnClick }) {
   return (
     <div className={toolbarContainer}>
       <button className={buttonStyle} onClick={pencilOnClick}>
-        <FaPenNib />
+        <FaPenNib size={16} />
       </button>
       <button className={buttonStyle} onClick={eraserOnClick}>
-        <FaEraser />
+        <FaEraser size={16} />
       </button>
     </div>
   );
@@ -26,7 +26,7 @@ const buttonStyle = {
 };
 
 const toolbarContainer = {
-  display: 'fles',
+  display: 'flex',
   flexDirection: 'row',
   justifyContent: 'center',
   alignItems: 'center',

@@ -5,7 +5,7 @@ import { useLocation } from 'react-router-dom';
 import {
   // actions as userActions,
   context as UserContext,
-} from '../reducers/user.reducer';
+} from '../../reducers/user.reducer';
 
 function Header() {
   const { userState } = useContext(UserContext);
@@ -27,30 +27,24 @@ function Header() {
     }
   }, [location]);
   return (
-    <header className={styles.header}>
-      <h1>{title}</h1>
-      <nav className={styles.links}>
+    <header className={styles.nav}>
+      <h1 className={styles.siteTitle}>{title}</h1>
+      <nav className={styles.linkContainer}>
         <NavLink
-          className={({ isActive }) =>
-            isActive ? styles.current : styles.inactive
-          }
+          className={({ isActive }) => (isActive ? 'active' : '')}
           to={'/'}
         >
           Home
         </NavLink>
         <NavLink
-          className={({ isActive }) =>
-            isActive ? styles.current : styles.inactive
-          }
+          className={({ isActive }) => (isActive ? 'active' : '')}
           to={'/about'}
         >
           About
         </NavLink>
         {userState?.userData?.name && userState?.userData?.csrfToken && (
           <NavLink
-            className={({ isActive }) =>
-              isActive ? styles.current : styles.inactive
-            }
+            className={({ isActive }) => (isActive ? 'active' : '')}
             to={'/stats'}
           >
             Stats
