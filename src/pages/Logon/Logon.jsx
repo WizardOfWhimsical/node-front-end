@@ -5,7 +5,7 @@ import {
   context as UserContext,
 } from '../../reducers/user.reducer';
 import ErrorDisplay from '../../shared/ErrorDisplay/index';
-import styles from './LoginPage.module.css';
+import styles from './LogonPage.module.css';
 
 // const urlBase = import.meta.env.VITE_BASE_URL;
 const urlBase = '';
