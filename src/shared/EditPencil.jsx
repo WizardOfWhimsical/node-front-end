@@ -26,7 +26,7 @@ const buttonStyle = {
 };
 
 const toolbarContainer = {
-  display: 'fles',
+  display: 'flex',
   flexDirection: 'row',
   justifyContent: 'center',
   alignItems: 'center',
