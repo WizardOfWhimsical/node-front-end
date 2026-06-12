@@ -29,7 +29,7 @@ function TodosViewForm({
 
   return (
     <StyledForm onSubmit={preventRefresh}>
-      <div className="controlGroup">
+      <div className="flexColumn">
         <label>
           Search todos:
           <input
