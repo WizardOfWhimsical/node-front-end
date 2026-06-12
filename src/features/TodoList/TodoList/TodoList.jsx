@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import TodoListItem from './TodoListItem';
+import TodoListItem from '../TodpoListItem/TodoListItem';
 import styles from './TodoList.module.css';
 
 function TodoList({

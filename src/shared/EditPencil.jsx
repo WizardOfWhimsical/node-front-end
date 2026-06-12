@@ -1,13 +1,33 @@
-import { LuPencil, LuEraser } from 'react-icons';
+import { FaPencil, FaEraser } from 'react-icons/fa6';
+
 export default function ToolBar({ pencilOnClick, eraserOnClick }) {
   return (
-    <div className="toolbarContainer">
-      <button onClick={pencilOnClick}>
-        <LuPencil size={24} color="#333333" />
+    <div className={toolbarContainer}>
+      <button className={buttonStyle} onClick={pencilOnClick}>
+        <FaPencil />
       </button>
-      <button onClick={eraserOnClick}>
-        <LuEraser size={24} color="#222222" />
+      <button className={buttonStyle} onClick={eraserOnClick}>
+        <FaEraser />
       </button>
     </div>
   );
 }
+
+const buttonStyle = {
+  background: 'transparent',
+  border: 'none',
+  opacity: 1,
+  padding: 0,
+  display: 'inline-flex',
+  justifyContent: 'end',
+  alignItems: 'center',
+  size: 18,
+  cursor: 'pointer',
+};
+
+const toolbarContainer = {
+  display: 'fles',
+  flexDirection: 'row',
+  justifyContent: 'center',
+  alignItems: 'center',
+};
