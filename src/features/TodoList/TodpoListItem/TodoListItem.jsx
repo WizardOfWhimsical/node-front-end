@@ -49,10 +49,10 @@ function TodoListItem({ todo, onCompleteTodo, onUpdateTodo, onDeleteTodo }) {
     onDeleteTodo({ ...todo, title: workingTitle });
   }
   return (
-    <li className={styles.todo}>
+    <li className={styles.todoContainer}>
       <form onSubmit={handleUpdate}>
         {isEditing ? (
-          <>
+          <div className={styles.todo}>
             <TextInputWithLabel
               value={workingTitle}
               //take this
@@ -70,7 +70,7 @@ function TodoListItem({ todo, onCompleteTodo, onUpdateTodo, onDeleteTodo }) {
             <button type="button" onClick={handleUpdate}>
               <FaArrowsRotate size={16} />
             </button>
-          </>
+          </div>
         ) : (
           <>
             <span className={styles.todo}>
@@ -82,8 +82,7 @@ function TodoListItem({ todo, onCompleteTodo, onUpdateTodo, onDeleteTodo }) {
                   onChange={() => onCompleteTodo(todo.id)}
                 />
               </label>
-
-              {todo.title}
+              <>{todo.title}</>
               <ToolBar
                 pencilOnClick={() => setIsEditing(true)}
                 eraserOnClick={() =>

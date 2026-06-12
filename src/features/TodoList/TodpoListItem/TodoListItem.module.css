@@ -1,13 +1,25 @@
+.todo-container {
+  width: 100%;
+}
 .todo {
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: start;
+  justify-content: stretch;
   margin-bottom: 8px;
   padding: 4px 0;
+  div {
+    margin-left: auto;
+  }
+  label + button {
+    display: block;
+    width: 100%;
+    /* margin-left: 40px; */
+  }
 }
 
-.todo label + button {
+/* .todo label + button {
   display: block;
-  margin-left: 40px;
-}
+  width: 100%;
+ margin-left: 40px; 
+} */
