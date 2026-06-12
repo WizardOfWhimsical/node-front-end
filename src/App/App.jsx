@@ -1,7 +1,7 @@
 import { useReducer } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import styles from './App.module.css';
-import './App.css';
+
 import TodosPage from '../pages/TodosPage/TodosPage';
 import About from '../pages/About/About';
 import Header from '../shared/Header';
