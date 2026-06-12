@@ -18,7 +18,7 @@ function AuthPlaceholder() {
   };
 
   return (
-    <>
+    <div className="formControl">
       {!userState?.isLoading ? (
         <>
           <button
@@ -52,7 +52,7 @@ function AuthPlaceholder() {
       ) : (
         <p>Authorization...</p>
       )}
-    </>
+    </div>
   );
 }
 
