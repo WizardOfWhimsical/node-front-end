@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router-dom';
 import { useSearchParams } from 'react-router';
 import AuthLogoff from '../../features/AuthLogoff/AuthLogoff';
 import TodoForm from '../../features/TodoForm';
-import TodoList from '../../features/TodoList/TodoList';
+import TodoList from '../../features/TodoList/TodoList.jsx';
 import TodoPaginationForm from '../../features/TodoPaginationForm';
 import TodosViewForm from '../../features/TodosViewForm';
 import StatusFilter from '../../shared/StatusFilter.jsx';
