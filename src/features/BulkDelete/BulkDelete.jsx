@@ -1,9 +1,11 @@
-import { useState } from 'react';
+function BulkDelete(props) {
+  const idsToDelete = props.todoState.todoList
+    .filter((todo) => todo.isCompleted === true)
+    .map((t) => t.id);
 
-function BulkDelete() {
   return (
     <div>
-      <button type="button" onClick={() => console.log('hello World')}>
+      <button type="button" onClick={() => console.log({ idsToDelete })}>
         [BULKDELETE]
       </button>
     </div>
