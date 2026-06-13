@@ -1,9 +1,6 @@
 import { useEffect, useState, useContext } from 'react';
-// import { get } from '../utils/api';
-// import { useAuth } from '../hooks/useAuth';
 import BarChart from './BarChart';
 import ProfileStats from './ProfileStats';
-// import ErrorDisplay from '../shared/ErrorDisplay';
 import { context as UserContext } from '../../reducers/user.reducer.js';
 
 export default function ProfilePage() {
