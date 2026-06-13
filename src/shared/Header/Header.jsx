@@ -6,6 +6,7 @@ import {
   // actions as userActions,
   context as UserContext,
 } from '../../reducers/user.reducer';
+import BulkDelete from '../../features/BulkDelete';
 
 function Header() {
   const { userState } = useContext(UserContext);
@@ -29,6 +30,7 @@ function Header() {
   return (
     <header className={styles.nav}>
       <h1 className={styles.siteTitle}>{title}</h1>
+      <BulkDelete />
       <nav className={styles.linkContainer}>
         <NavLink
           className={({ isActive }) => (isActive ? 'active' : '')}
