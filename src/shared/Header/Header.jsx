@@ -2,11 +2,7 @@ import { NavLink } from 'react-router';
 import styles from './Header.module.css';
 import { useEffect, useState, useContext } from 'react';
 import { useLocation } from 'react-router-dom';
-import {
-  // actions as userActions,
-  context as UserContext,
-} from '../../reducers/user.reducer';
-import BulkDelete from '../../features/BulkDelete';
+import { context as UserContext } from '../../reducers/user.reducer';
 
 function Header() {
   const { userState } = useContext(UserContext);
@@ -30,7 +26,6 @@ function Header() {
   return (
     <header className={styles.nav}>
       <h1 className={styles.siteTitle}>{title}</h1>
-      <BulkDelete />
       <nav className={styles.linkContainer}>
         <NavLink
           className={({ isActive }) => (isActive ? 'active' : '')}

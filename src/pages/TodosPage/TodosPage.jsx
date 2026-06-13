@@ -24,6 +24,7 @@ import {
 } from '../../reducers/todos.reducer';
 // import styles from '../../App.module.css';
 import ErrorDisplay from '../../shared/ErrorDisplay/ErrorDisplay.jsx';
+import BulkDelete from '../../features/BulkDelete';
 
 // const urlBase = import.meta.env.VITE_BASE_URL;
 const urlBase = '';
@@ -283,7 +284,7 @@ function TodosPage() {
       <AuthLogoff />
       <hr />
       <TodoForm onAddTodo={addTodo} isSaving={todoState.isSaving} />
-
+      <BulkDelete todoState={todoState} />
       <TodoList
         todoState={todoState}
         queryString={queryString}
