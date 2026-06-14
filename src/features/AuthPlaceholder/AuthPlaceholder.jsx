@@ -18,7 +18,7 @@ function AuthPlaceholder() {
   };
 
   return (
-    <div className="formControl">
+    <div className="formDesign center">
       {!userState?.isLoading ? (
         <>
           <button
@@ -39,8 +39,8 @@ function AuthPlaceholder() {
           </button>
           {/* //trying to break this by adding s to the env */}
           {googleClientId && <br></br> && <AuthGoogleButton />}
-          <br></br>
-          <br></br>
+          <br />
+
           {userState?.errorMessage && (
             <ErrorDisplay
               error={userState?.errorMessage}

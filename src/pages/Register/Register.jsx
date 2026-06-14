@@ -100,7 +100,7 @@ function Register() {
             }}
             placeholder="Name"
           />
-          <br></br>
+          <br />
           <label htmlFor="email">Your Email: </label>
           <input
             id="email"
@@ -111,23 +111,26 @@ function Register() {
             }}
             placeholder="Email"
           />
-          <br></br>
+          <br />
           <label htmlFor="password1">Your New Password: </label>
           <input id="password1" name="password" type="password" />
-          <br></br>
-          <label htmlFor="password2">Confirm Your Password: </label>
+          <br />
+          <label htmlFor="password2">Confirm Password: </label>
           <input id="password2" name="passwordConfirmation" type="password" />
-          <br></br>
+          <br />
           <ReCAPTCHA sitekey={siteKey} onChange={(token) => setToken(token)} />
-          <button type="submit">Submit</button>
-          <button
-            type="button"
-            onClick={() => {
-              navigate('/');
-            }}
-          >
-            Cancel
-          </button>
+          <div className={styles.buttonPlacement}>
+            <button type="submit">Submit</button>
+            <button
+              type="button"
+              onClick={() => {
+                navigate('/');
+              }}
+            >
+              Cancel
+            </button>
+          </div>
+
           {/* {userState?.errorMessage && <p>{userState?.errorMessage}</p>} */}
           {userState?.errorMessage && (
             <ErrorDisplay
