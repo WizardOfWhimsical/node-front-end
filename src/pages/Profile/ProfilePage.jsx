@@ -38,7 +38,7 @@ export default function ProfilePage() {
           const active = total - completed;
 
           setIsLoading(false);
-          setToDos((p) => [...p]);
+          // setToDos((p) => [...p]);
           setToDoStats({ total, completed, active });
         }
       } catch (error) {
