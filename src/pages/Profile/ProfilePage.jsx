@@ -7,12 +7,12 @@ import { context as UserContext } from '../../reducers/user.reducer.js';
 export default function ProfilePage() {
   const { userState } = useContext(UserContext);
 
-  const [priorityStats, setPriorityStats] = useState({
-    low: 0,
-    medium: 0,
-    high: 0,
-  });
-  const [todos, setToDos] = useState([]);
+  // const [priorityStats, setPriorityStats] = useState({
+  //   low: 0,
+  //   medium: 0,
+  //   high: 0,
+  // });
+  // const [todos, setToDos] = useState([]);
   const [todoStats, setToDoStats] = useState({});
 
   const [error, setError] = useState('');
