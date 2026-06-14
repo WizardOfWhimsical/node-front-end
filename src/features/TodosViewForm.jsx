@@ -29,7 +29,7 @@ function TodosViewForm({
   return (
     <form onSubmit={preventRefresh}>
       <div>
-        <label htmlFor="search">Search todos:</label>
+        <label htmlFor="search">Search todos: </label>
         <input
           type="text"
           id="search"
@@ -41,31 +41,28 @@ function TodosViewForm({
         </button>
       </div>
       <div>
-        <label>
-          Sort by
-          <select
-            name="sortBy"
-            id="sortBy"
-            onChange={(e) => setSortField(e.target.value)}
-            value={sortField}
-          >
-            <option value="title">Title</option>
-            <option value="createdAt">Time Added</option>
-            <option value="isCompleted">Is Completed</option>
-          </select>
-        </label>
-        <label>
-          Direction
-          <select
-            name="direction"
-            id="direction"
-            value={sortDirection}
-            onChange={(e) => setSortDirection(e.target.value)}
-          >
-            <option value="asc">Ascending</option>
-            <option value="desc">Descending</option>
-          </select>
-        </label>
+        <label htmlFor="sortBy">Sort by: </label>
+        <select
+          name="sortBy"
+          id="sortBy"
+          onChange={(e) => setSortField(e.target.value)}
+          value={sortField}
+        >
+          <option value="title">Title</option>
+          <option value="createdAt">Time Added</option>
+          <option value="isCompleted">Is Completed</option>
+        </select>
+
+        <label htmlFor="direction">Direction: </label>
+        <select
+          name="direction"
+          id="direction"
+          value={sortDirection}
+          onChange={(e) => setSortDirection(e.target.value)}
+        >
+          <option value="asc">Ascending</option>
+          <option value="desc">Descending</option>
+        </select>
       </div>
     </form>
   );
