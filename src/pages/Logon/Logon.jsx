@@ -78,15 +78,18 @@ function Logon() {
           <label htmlFor="password3">Password: </label>
           <input id="password3" name="password" type="password" />
           <br></br>
-          <button type="submit">Submit</button>
-          <button
-            type="button"
-            onClick={() => {
-              navigate('/');
-            }}
-          >
-            Cancel
-          </button>
+          <div className={styles.buttonPlacement}>
+            <button type="submit">Submit</button>
+            <button
+              type="button"
+              onClick={() => {
+                navigate('/');
+              }}
+            >
+              Cancel
+            </button>
+          </div>
+
           {/* {userState?.errorMessage && <p>{userState?.errorMessage}</p>} */}
           {userState?.errorMessage && (
             <ErrorDisplay

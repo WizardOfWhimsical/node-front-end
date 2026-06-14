@@ -24,31 +24,34 @@ function Header() {
     }
   }, [location]);
   return (
-    <header className={styles.nav}>
-      <h1 className={styles.siteTitle}>{title}</h1>
-      <nav className={styles.linkContainer}>
-        <NavLink
-          className={({ isActive }) => (isActive ? 'active' : '')}
-          to={'/'}
-        >
-          Home
-        </NavLink>
-        <NavLink
-          className={({ isActive }) => (isActive ? 'active' : '')}
-          to={'/about'}
-        >
-          About
-        </NavLink>
-        {userState?.userData?.name && userState?.userData?.csrfToken && (
+    <div>
+      <header className={styles.nav}>
+        {/* <h1 className={styles.siteTitle}>{title}</h1> */}
+        <nav className={styles.linkContainer}>
           <NavLink
             className={({ isActive }) => (isActive ? 'active' : '')}
-            to={'/stats'}
+            to={'/'}
           >
-            Stats
+            Home
           </NavLink>
-        )}
-      </nav>
-    </header>
+          <NavLink
+            className={({ isActive }) => (isActive ? 'active' : '')}
+            to={'/about'}
+          >
+            About
+          </NavLink>
+          {userState?.userData?.name && userState?.userData?.csrfToken && (
+            <NavLink
+              className={({ isActive }) => (isActive ? 'active' : '')}
+              to={'/stats'}
+            >
+              Stats
+            </NavLink>
+          )}
+        </nav>
+      </header>
+      <h1 className={styles.siteTitle}>{title}</h1>
+    </div>
   );
 }
 

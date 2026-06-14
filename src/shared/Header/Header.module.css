@@ -6,6 +6,7 @@
   align-items: stretch;
   gap: 32px;
   padding: 0 16px;
+  height: 45px;
 }
 
 .nav a {
@@ -25,7 +26,7 @@
 }
 
 .site-title {
-  font-size: 1em;
+  font-size: 2em;
 }
 
 @media (max-width: 576px) {
