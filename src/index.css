@@ -44,11 +44,11 @@ select {
   font-style: italic;
   font-size: 1em;
   border-radius: 10px;
-  margin-bottom: 12px;
-  line-height: 1.25;
+  /* margin-bottom: 12px; */
+  line-height: 1.2;
   padding: 3px 6px;
   border: 1px solid #aaa;
-  width: 10em;
+  width: 8em;
   font-weight: 200;
 }
 
@@ -115,7 +115,7 @@ have to camel case becase jsx is fighting me for the render and to use local con
 .formDesign {
   border-radius: 10px;
   line-height: 1.25em;
-  font-size: 1.1em;
+  /* font-size: 1.1em; */
   border: 1px solid #aaa;
   box-shadow: 0 1px 3px rgb(67, 60, 60);
 }
@@ -125,6 +125,12 @@ have to camel case becase jsx is fighting me for the render and to use local con
   align-items: center;
   flex-wrap: wrap;
 }
+
+.justifyInbetween {
+  width: 100%;
+  justify-items: space-between;
+}
+
 #search {
   /* display: flex; */
   width: 100%;
