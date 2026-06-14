@@ -125,6 +125,11 @@ have to camel case becase jsx is fighting me for the render and to use local con
   align-items: center;
   flex-wrap: wrap;
 }
+#search {
+  /* display: flex; */
+  width: 100%;
+  max-width: 400px;
+}
 .flexColumn {
   display: flex;
   flex-direction: column;
