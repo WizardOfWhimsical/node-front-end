@@ -310,18 +310,6 @@ function TodosPage() {
         setSortField={handleSortFieldChange}
       />
       <StatusFilter />
-      {/* {todoState.errorMessage && (
-        <div className={styles.errorWrapper}>
-          <hr />
-          <p>{todoState.errorMessage}</p>
-          <button
-            type="button"
-            onClick={() => dispatch({ type: todoActions.clearError })}
-          >
-            Dismiss Error Message
-          </button>
-        </div>
-      )} */}
       {todoState?.errorMessage && (
         <ErrorDisplay
           error={todoState.errorMessage}

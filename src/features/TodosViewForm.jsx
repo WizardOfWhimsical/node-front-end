@@ -28,8 +28,8 @@ function TodosViewForm({
 
   return (
     <form onSubmit={preventRefresh}>
-      <div>
-        <label htmlFor="search">Search todos:</label>
+      <div className="serchField">
+        <label htmlFor="search">Search todos: </label>
         <input
           type="text"
           id="search"
@@ -40,9 +40,10 @@ function TodosViewForm({
           Clear
         </button>
       </div>
-      <div>
-        <label>
-          Sort by
+      <div className="center">
+        {/* seperate labels from select */}
+        <label htmlFor="sortBy" className="justifyInbetween">
+          Sort by:
           <select
             name="sortBy"
             id="sortBy"
@@ -54,8 +55,8 @@ function TodosViewForm({
             <option value="isCompleted">Is Completed</option>
           </select>
         </label>
-        <label>
-          Direction
+        <label htmlFor="direction" className="justifyInbetween">
+          Direction:
           <select
             name="direction"
             id="direction"
