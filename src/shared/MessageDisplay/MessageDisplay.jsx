@@ -1,18 +1,34 @@
 // import { Button } from 'react-bootstrap';
 import styles from './MessageDisplay.module.css';
 
-export default function MessageDisplay({ error, onClick }) {
+export default function MessageDisplay({
+  message = '',
+  error = '',
+  onClick,
+  onConfirm,
+}) {
   return (
     <div className={styles.errorOverlay}>
       <div className={styles.errorContainer}>
         <p className={styles.errorMessage}>
-          A problem occured:
+          {error ? 'A problem occured:' : 'Confirm?'}
           <br />
-          {error}
+          {error || message}
         </p>
-        <button className={styles.errorBtn} type="button" onClick={onClick}>
-          Close
-        </button>
+        <div>
+          {message ? (
+            <button
+              className={styles.errorBtn}
+              type="button"
+              onClick={onConfirm}
+            >
+              Confirm
+            </button>
+          ) : null}
+          <button className={styles.errorBtn} type="button" onClick={onClick}>
+            Close
+          </button>
+        </div>
       </div>
     </div>
   );

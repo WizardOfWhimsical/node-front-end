@@ -1,8 +1,16 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { context as UserContext } from '../../reducers/user.reducer.js';
+import MessageDisplay from '../../shared/MessageDisplay/MessageDisplay.jsx';
+
+const confirmationMessage =
+  'Are you sure you wish to delete all your completed tasks?';
+
 function BulkDelete(props) {
+  const [error, setError] = useState('');
+  const [displayConfirmation, setDisplayConfirmation] = useState(false);
   const { userState } = useContext(UserContext);
-  async function handleOnclick() {
+
+  async function handleConfirmation() {
     const response = window.confirm('Are you sure?');
 
     if (response) {
@@ -19,17 +27,42 @@ function BulkDelete(props) {
           body: JSON.stringify({ tasks: idsToDelete }),
           credentials: 'include',
         });
+        setDisplayConfirmation(false);
       } catch (error) {
+        setError(error.message);
         console.error(error);
       }
     }
   }
 
+  function handleOnclick() {
+    setDisplayConfirmation(true);
+  }
+  function closeError() {
+    setError('');
+  }
+  function closeConfirm() {
+    setDisplayConfirmation(false);
+  }
+
   return (
     <div>
-      <button type="button" onClick={handleOnclick}>
-        [BULKDELETE]
-      </button>
+      {error ? (
+        <MessageDisplay error={error} onClick={closeError} />
+      ) : (
+        displayConfirmation && (
+          <MessageDisplay
+            message={confirmationMessage}
+            onClick={closeConfirm}
+            onConfirm={handleConfirmation}
+          />
+        )
+      )}
+      <div>
+        <button type="button" onClick={handleOnclick}>
+          [BULKDELETE]
+        </button>
+      </div>
     </div>
   );
 }
