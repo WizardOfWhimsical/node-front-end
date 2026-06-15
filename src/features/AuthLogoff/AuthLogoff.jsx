@@ -3,7 +3,7 @@ import {
   actions as userActions,
   context as UserContext,
 } from '../../reducers/user.reducer.js';
-import ErrorDisplay from '../../shared/ErrorDisplay/index.js';
+import MessageDisplay from '../../shared/MessageDisplay';
 
 // const urlBase = import.meta.env.VITE_BASE_URL;
 const urlBase = '';
@@ -55,7 +55,7 @@ function AuthLogoff() {
         <button>Processing...</button>
       )}
       {userState?.errorMessage && (
-        <ErrorDisplay
+        <MessageDisplay
           error={userState?.errorMessage}
           onClick={() => dispatch({ type: userActions.clearAuthError })}
         />

@@ -4,7 +4,7 @@ import {
   actions as userActions,
   context as UserContext,
 } from '../../reducers/user.reducer';
-import ErrorDisplay from '../../shared/ErrorDisplay/index';
+import MessageDisplay from '../../shared/MessageDisplay';
 import styles from './LogonPage.module.css';
 
 // const urlBase = import.meta.env.VITE_BASE_URL;
@@ -92,7 +92,7 @@ function Logon() {
 
           {/* {userState?.errorMessage && <p>{userState?.errorMessage}</p>} */}
           {userState?.errorMessage && (
-            <ErrorDisplay
+            <MessageDisplay
               error={userState.errorMessage}
               onClick={dispatch({ type: userActions.clearAuthError })}
             />

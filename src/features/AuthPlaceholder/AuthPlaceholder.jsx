@@ -5,7 +5,7 @@ import {
   actions as userActions,
   context as UserContext,
 } from '../../reducers/user.reducer.js';
-import ErrorDisplay from '../../shared/ErrorDisplay/index.js';
+import MessageDisplay from '../../shared/MessageDisplay';
 
 const googleClientId = import.meta.env.VITE_GOOGLE_CLIENT_ID;
 
@@ -42,7 +42,7 @@ function AuthPlaceholder() {
           <br />
 
           {userState?.errorMessage && (
-            <ErrorDisplay
+            <MessageDisplay
               error={userState?.errorMessage}
               onClick={() => clearError()}
             />
