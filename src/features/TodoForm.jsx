@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
+import BulkDelete from '../features/BulkDelete';
 import TextInputWithLabel from '../shared/TextInputWithLabel';
 
-function TodoForm({ onAddTodo, isSaving }) {
+function TodoForm({ onAddTodo, isSaving, todoState }) {
   const [workingTodo, setWorkingTodo] = useState('');
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
   const todoTitleInput = useRef(null);
@@ -29,7 +30,7 @@ function TodoForm({ onAddTodo, isSaving }) {
   }
 
   return (
-    <form onSubmit={handleAddTodo}>
+    <form className="addTodo" onSubmit={handleAddTodo}>
       <TextInputWithLabel
         ref={todoTitleInput}
         value={workingTodo}
@@ -37,9 +38,12 @@ function TodoForm({ onAddTodo, isSaving }) {
         onChange={(e) => setWorkingTodo(e.target.value)}
         elementId="todoTitle"
       />
-      <button disabled={isButtonDisabled}>
-        {isSaving ? 'Saving...' : 'Add Todo'}
-      </button>
+      <div>
+        <button disabled={isButtonDisabled}>
+          {isSaving ? 'Saving...' : 'Add Todo'}
+        </button>
+        <BulkDelete todoState={todoState} />
+      </div>
     </form>
   );
 }

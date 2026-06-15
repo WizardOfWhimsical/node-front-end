@@ -7,7 +7,7 @@ function TextInputWithLabel({
   label,
 }) {
   return (
-    <div className="flexColumn">
+    <div>
       <label htmlFor={elementId}>{label}</label>
       <input
         type="text"

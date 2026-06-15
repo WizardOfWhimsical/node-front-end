@@ -2,6 +2,7 @@ import { useContext, useState } from 'react';
 import { context as UserContext } from '../../reducers/user.reducer.js';
 import MessageDisplay from '../../shared/MessageDisplay/MessageDisplay.jsx';
 import { FaRegTrashCan } from 'react-icons/fa6';
+import style from './BulkDelete.module.css';
 const confirmationMessage =
   'Are you sure you wish to delete all your completed tasks?';
 
@@ -46,7 +47,7 @@ function BulkDelete(props) {
   }
 
   return (
-    <div>
+    <div className={style.bulkDeleteContainer}>
       {error ? (
         <MessageDisplay error={error} onClick={closeError} />
       ) : (
@@ -58,11 +59,11 @@ function BulkDelete(props) {
           />
         )
       )}
-      <div>
-        <button type="button" onClick={handleOnclick}>
-          <FaRegTrashCan />
-        </button>
-      </div>
+      {/* <div> */}
+      <button type="button" onClick={handleOnclick}>
+        <FaRegTrashCan />
+      </button>
+      {/* </div> */}
     </div>
   );
 }

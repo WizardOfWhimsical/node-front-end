@@ -67,7 +67,11 @@ label {
 }
 
 input[type='text'] {
-  justify-self: stretch;
+  width: 100%;
+  /* max-width: 350px; */
+  min-width: 50px;
+  font-size: 18px;
+  /* justify-self: stretch; */
   height: 28px;
 }
 
@@ -116,6 +120,7 @@ have to camel case becase jsx is fighting me for the render and to use local con
   border-radius: 10px;
   line-height: 1.25em;
   /* font-size: 1.1em; */
+  max-width: 400px;
   border: 1px solid #aaa;
   box-shadow: 0 1px 3px rgb(67, 60, 60);
 }
@@ -125,20 +130,39 @@ have to camel case becase jsx is fighting me for the render and to use local con
   align-items: center;
   flex-wrap: wrap;
 }
-
+.flexColumn {
+  display: flex;
+  flex-direction: column;
+}
 .justifyInbetween {
   width: 100%;
   justify-items: space-between;
+}
+
+/*
+Custom classes
+*/
+.addTodo {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  input {
+    font-size: 18px;
+  }
+  div:last-child {
+    display: flex;
+    justify-content: space-between;
+  }
+  label {
+    display: none;
+  }
 }
 
 #search {
   /* display: flex; */
   width: 100%;
   max-width: 400px;
-}
-.flexColumn {
-  display: flex;
-  flex-direction: column;
 }
 
 .active {
