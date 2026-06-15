@@ -69,7 +69,7 @@ function reducer(state = initialState, action) {
     case actions.completeTodo: {
       const updatedTodos = state.todoList.map((todo) => {
         if (todo.id === action.id) {
-          return { ...todo, isCompleted: true };
+          return { ...todo, isCompleted: !todo.isCompleted };
         }
         return todo;
       });
@@ -104,9 +104,9 @@ function reducer(state = initialState, action) {
     case actions.deleteTodo:
       return {
         ...state,
-        todoList: state.todoList.filter(el => {
+        todoList: state.todoList.filter((el) => {
           return el.id !== action.id;
-        })
+        }),
       };
 
     case actions.revertDeleteTodo: {
@@ -116,7 +116,7 @@ function reducer(state = initialState, action) {
       }
       return {
         ...state,
-        todoList: updatedTodos
+        todoList: updatedTodos,
       };
     }
 

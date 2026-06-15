@@ -198,7 +198,7 @@ function TodosPage() {
 
     try {
       const payload = {
-        isCompleted: true,
+        isCompleted: !originalTodo.isCompleted,
       };
       const options = {
         method: 'PATCH',
