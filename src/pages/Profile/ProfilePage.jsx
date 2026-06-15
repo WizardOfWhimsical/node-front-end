@@ -1,7 +1,7 @@
 import { useEffect, useState, useContext } from 'react';
 import BarChart from './BarChart';
 import ProfileStats from './ProfileStats';
-import ErrorDisplay from '../../shared/ErrorDisplay/ErrorDisplay.jsx';
+import MessageDisplay from '../../shared/MessageDisplay';
 import { context as UserContext } from '../../reducers/user.reducer.js';
 
 export default function ProfilePage() {
@@ -78,7 +78,7 @@ export default function ProfilePage() {
 
   return (
     <>
-      {error && <ErrorDisplay error={error} onClick={() => setError('')} />}
+      {error && <MessageDisplay error={error} onClick={() => setError('')} />}
       {isloading ? (
         <h1> One moment while we calculate...</h1>
       ) : (

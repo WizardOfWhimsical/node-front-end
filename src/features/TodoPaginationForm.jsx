@@ -1,9 +1,8 @@
-import {useSearchParams} from 'react-router';
-import {styled} from 'styled-components';
+import { useSearchParams } from 'react-router';
 
 function TodoPaginationForm({ isLoading, page, setPage, total, limit }) {
   const [searchParams, setSearchParams] = useSearchParams();
-  const totalPages = Math.ceil(total/limit);
+  const totalPages = Math.ceil(total / limit);
 
   const handlePreviousPage = () => {
     const prevPage = Math.max(page - 1, 1);
@@ -12,7 +11,7 @@ function TodoPaginationForm({ isLoading, page, setPage, total, limit }) {
       searchParams.delete('page');
       setSearchParams(searchParams);
     } else {
-      setSearchParams({page: prevPage});
+      setSearchParams({ page: prevPage });
     }
   };
 
@@ -24,7 +23,7 @@ function TodoPaginationForm({ isLoading, page, setPage, total, limit }) {
 
   return (
     <>
-      <StyledDiv>
+      <div>
         <button
           type="button"
           onClick={handlePreviousPage}
@@ -32,11 +31,13 @@ function TodoPaginationForm({ isLoading, page, setPage, total, limit }) {
         >
           Previous
         </button>
-        {!isLoading ?
+        {!isLoading ? (
           <span>
             Page {page} of {totalPages}
-          </span> : <></>
-        }
+          </span>
+        ) : (
+          <></>
+        )}
         <button
           type="button"
           onClick={handleNextPage}
@@ -44,14 +45,9 @@ function TodoPaginationForm({ isLoading, page, setPage, total, limit }) {
         >
           Next
         </button>
-      </StyledDiv>
+      </div>
     </>
   );
 }
-
-const StyledDiv = styled.div`
-    display: flex;
-    gap: 1rem;
-`;
 
 export default TodoPaginationForm;

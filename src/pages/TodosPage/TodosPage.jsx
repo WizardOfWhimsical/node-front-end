@@ -23,7 +23,7 @@ import {
   initialState as initialTodosState,
 } from '../../reducers/todos.reducer';
 // import styles from '../../App.module.css';
-import ErrorDisplay from '../../shared/ErrorDisplay/ErrorDisplay.jsx';
+import MessageDisplay from '../../shared/MessageDisplay';
 import BulkDelete from '../../features/BulkDelete';
 
 // const urlBase = import.meta.env.VITE_BASE_URL;
@@ -311,7 +311,7 @@ function TodosPage() {
       />
       <StatusFilter />
       {todoState?.errorMessage && (
-        <ErrorDisplay
+        <MessageDisplay
           error={todoState.errorMessage}
           onClick={() => dispatch({ type: todoActions.clearError })}
         />

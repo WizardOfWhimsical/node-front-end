@@ -5,7 +5,7 @@ import {
   context as UserContext,
 } from '../../reducers/user.reducer';
 import ReCAPTCHA from 'react-google-recaptcha';
-import ErrorDisplay from '../../shared/ErrorDisplay/ErrorDisplay.jsx';
+import MessageDisplay from '../../shared/MessageDisplay';
 import styles from './Register.module.css';
 // const urlBase = import.meta.env.VITE_BASE_URL;
 const urlBase = '';
@@ -133,7 +133,7 @@ function Register() {
 
           {/* {userState?.errorMessage && <p>{userState?.errorMessage}</p>} */}
           {userState?.errorMessage && (
-            <ErrorDisplay
+            <MessageDisplay
               error={userState?.errorMessage}
               onClick={() => dispatch({ type: userActions.clearAuthError })}
             />

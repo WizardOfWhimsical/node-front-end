@@ -1,7 +1,7 @@
 // import { Button } from 'react-bootstrap';
-import styles from './ErrorDisplay.module.css';
+import styles from './MessageDisplay.module.css';
 
-export default function ErrorDisplay({ error, onClick }) {
+export default function MessageDisplay({ error, onClick }) {
   return (
     <div className={styles.errorOverlay}>
       <div className={styles.errorContainer}>
