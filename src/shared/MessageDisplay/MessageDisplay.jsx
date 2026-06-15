@@ -11,7 +11,7 @@ export default function MessageDisplay({
     <div className={styles.errorOverlay}>
       <div className={styles.errorContainer}>
         <p className={styles.errorMessage}>
-          {error ? 'A problem occured:' : 'Confirm?'}
+          {error ? 'A problem occured:' : 'Delete all Complete?'}
           <br />
           {error || message}
         </p>
