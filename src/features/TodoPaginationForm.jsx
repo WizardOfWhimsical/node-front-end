@@ -22,31 +22,29 @@ function TodoPaginationForm({ isLoading, page, setPage, total, limit }) {
   };
 
   return (
-    <>
-      <div>
-        <button
-          type="button"
-          onClick={handlePreviousPage}
-          disabled={page === 1 || isLoading}
-        >
-          Previous
-        </button>
-        {!isLoading ? (
-          <span>
-            Page {page} of {totalPages}
-          </span>
-        ) : (
-          <></>
-        )}
-        <button
-          type="button"
-          onClick={handleNextPage}
-          disabled={page >= totalPages || isLoading}
-        >
-          Next
-        </button>
-      </div>
-    </>
+    <div className="pagination">
+      <button
+        type="button"
+        onClick={handlePreviousPage}
+        disabled={page === 1 || isLoading}
+      >
+        Prev
+      </button>
+      {!isLoading ? (
+        <span>
+          Page {page} of {totalPages}
+        </span>
+      ) : (
+        <></>
+      )}
+      <button
+        type="button"
+        onClick={handleNextPage}
+        disabled={page >= totalPages || isLoading}
+      >
+        Next
+      </button>
+    </div>
   );
 }
 

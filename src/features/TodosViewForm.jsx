@@ -27,9 +27,8 @@ function TodosViewForm({
   }
 
   return (
-    <form onSubmit={preventRefresh}>
-      <div className="serchField">
-        <label htmlFor="search">Search todos: </label>
+    <div className="searchForm" onSubmit={preventRefresh}>
+      <div>
         <input
           type="text"
           id="search"
@@ -39,11 +38,12 @@ function TodosViewForm({
         <button type="button" onClick={() => setLocalQueryString('')}>
           Clear
         </button>
+        <label htmlFor="search">Search todos</label>
       </div>
-      <div className="center">
+      <div>
         {/* seperate labels from select */}
-        <label htmlFor="sortBy" className="justifyInbetween">
-          Sort by:
+        <div>
+          <label htmlFor="sortBy">Sort by:</label>
           <select
             name="sortBy"
             id="sortBy"
@@ -54,9 +54,9 @@ function TodosViewForm({
             <option value="createdAt">Time Added</option>
             <option value="isCompleted">Is Completed</option>
           </select>
-        </label>
-        <label htmlFor="direction" className="justifyInbetween">
-          Direction:
+        </div>
+        <div>
+          <label htmlFor="direction">Direction:</label>
           <select
             name="direction"
             id="direction"
@@ -66,9 +66,9 @@ function TodosViewForm({
             <option value="asc">Ascending</option>
             <option value="desc">Descending</option>
           </select>
-        </label>
+        </div>
       </div>
-    </form>
+    </div>
   );
 }
 

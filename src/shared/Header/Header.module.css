@@ -2,7 +2,7 @@
   background-color: rgb(67, 60, 60);
   color: white;
   display: flex;
-  justify-content: space-between;
+  justify-content: end;
   align-items: stretch;
   gap: 32px;
   padding: 0 16px;
