@@ -70,6 +70,7 @@ input[type='text'] {
   min-width: 50px;
   font-size: 18px;
   height: 28px;
+  border-radius: 10px;
 }
 
 input[type='checkbox'] {
