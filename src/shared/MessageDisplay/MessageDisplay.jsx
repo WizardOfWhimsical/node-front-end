@@ -4,8 +4,8 @@ import styles from './MessageDisplay.module.css';
 export default function MessageDisplay({
   message = '',
   error = '',
-  onClick,
-  onConfirm,
+  onClick = () => {},
+  onConfirm = () => {},
 }) {
   return (
     <div className={styles.errorOverlay}>
