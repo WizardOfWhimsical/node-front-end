@@ -61,7 +61,7 @@ export default function BarChart({ total, active, completed, name }) {
   };
 
   return (
-    <div style={{ maxWidth: '650px', height: '400px' }}>
+    <div style={{ maxWidth: '650px', maxheight: '400px' }}>
       <Bar data={data} options={options} />
     </div>
   );
