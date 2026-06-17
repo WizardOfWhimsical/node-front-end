@@ -12,28 +12,28 @@ function BulkDelete(props) {
   const { userState } = useContext(UserContext);
 
   async function handleConfirmation() {
-    const response = window.confirm('Are you sure?');
+    // const response = window.confirm('Are you sure?');
 
-    if (response) {
-      const idsToDelete = props.todoState.todoList
-        .filter((todo) => todo.isCompleted === true)
-        .map((t) => t.id);
-      try {
-        await fetch('/api/tasks/bulk', {
-          method: 'DELETE',
-          headers: {
-            'Content-Type': 'application/json',
-            'X-CSRF-TOKEN': userState?.userData?.csrfToken,
-          },
-          body: JSON.stringify({ tasks: idsToDelete }),
-          credentials: 'include',
-        });
-        setDisplayConfirmation(false);
-      } catch (error) {
-        setError(error.message);
-        console.error(error);
-      }
+    // if (response) {
+    const idsToDelete = props.todoState.todoList
+      .filter((todo) => todo.isCompleted === true)
+      .map((t) => t.id);
+    try {
+      await fetch('/api/tasks/bulk', {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRF-TOKEN': userState?.userData?.csrfToken,
+        },
+        body: JSON.stringify({ tasks: idsToDelete }),
+        credentials: 'include',
+      });
+      setDisplayConfirmation(false);
+    } catch (error) {
+      setError(error.message);
+      console.error(error);
     }
+    // }
   }
 
   function handleOnclick() {
