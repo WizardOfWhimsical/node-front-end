@@ -32,13 +32,14 @@ function TodoListItem({ todo, onCompleteTodo, onUpdateTodo, onDeleteTodo }) {
     if (!isEditing) {
       return;
     }
+    console.log({ ...todo, title: workingTitle });
     event.preventDefault();
     onUpdateTodo({ ...todo, title: workingTitle });
     setIsEditing(false);
   }
   function handleDelete(e) {
     e.preventDefault();
-    console.log({ ...todo, title: workingTitle });
+
     onDeleteTodo({ ...todo, title: workingTitle });
     setIsEditing(false);
   }

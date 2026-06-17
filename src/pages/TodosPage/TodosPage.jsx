@@ -42,6 +42,12 @@ function TodosPage() {
   const [limit] = useState(10);
   const [todoState, dispatch] = useReducer(todosReducer, initialTodosState);
   const { userState, dispatch: dispatchUser } = useContext(UserContext);
+  const setTasks = (tasks) => {
+    dispatch({
+      type: todoActions.loadTodos,
+      tasks,
+    });
+  };
 
   const resetPage = () => {
     setPage(1);
@@ -267,10 +273,7 @@ function TodosPage() {
           throw new Error(resp.message);
         }
         const taskResp = await resp.json();
-        dispatch({
-          type: todoActions.loadTodos,
-          tasks: taskResp.tasks,
-        });
+        setTasks(taskResp.tasks);
         setTotal(taskResp.pagination.total);
       } catch (error) {
         dispatch({ type: todoActions.setLoadError, error });
@@ -278,6 +281,29 @@ function TodosPage() {
     };
     fetchTodos();
   }, [queryString, sortDirection, sortField, encodeUrl, onUnauthorized]);
+
+  async function handleBulkDelete() {
+    const idsToDelete = todoState.todoList
+      .filter((todo) => todo.isCompleted === true)
+      .map((t) => t.id);
+    try {
+      await fetch('/api/tasks/bulk', {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRF-TOKEN': userState?.userData?.csrfToken,
+        },
+        body: JSON.stringify({ tasks: idsToDelete }),
+        credentials: 'include',
+      });
+      const remainingTodos = todoState.todoList.filter(
+        (todo) => todo.isCompleted === false
+      );
+      setTasks(remainingTodos);
+    } catch (error) {
+      console.error(error);
+    }
+  }
 
   return (
     <>
@@ -287,6 +313,7 @@ function TodosPage() {
         onAddTodo={addTodo}
         isSaving={todoState.isSaving}
         todoState={todoState}
+        onBulkDelete={handleBulkDelete}
       />
       {/* <BulkDelete todoState={todoState} /> */}
       <TodoList
@@ -296,6 +323,7 @@ function TodosPage() {
         onUpdateTodo={updateTodo}
         onDeleteTodo={deleteTodo}
         statusFilter={statusFilter}
+        setTasks={setTasks}
       />
       <TodoPaginationForm
         isLoading={todoState.isLoading}
