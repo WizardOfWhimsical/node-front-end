@@ -94,7 +94,7 @@ function Logon() {
           {userState?.errorMessage && (
             <MessageDisplay
               error={userState.errorMessage}
-              onClick={dispatch({ type: userActions.clearAuthError })}
+              onClick={() => dispatch({ type: userActions.clearAuthError })}
             />
           )}
         </form>
