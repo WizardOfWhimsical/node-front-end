@@ -3,10 +3,10 @@ import { FaPenNib, FaEraser } from 'react-icons/fa6';
 export default function ToolBar({ pencilOnClick, eraserOnClick }) {
   return (
     <div className={toolbarContainer}>
-      <button className={buttonStyle} onClick={pencilOnClick}>
+      <button type="button" className={buttonStyle} onClick={pencilOnClick}>
         <FaPenNib size={16} />
       </button>
-      <button className={buttonStyle} onClick={eraserOnClick}>
+      <button type="button" className={buttonStyle} onClick={eraserOnClick}>
         <FaEraser size={16} />
       </button>
     </div>
