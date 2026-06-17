@@ -36,18 +36,13 @@ function TodoListItem({ todo, onCompleteTodo, onUpdateTodo, onDeleteTodo }) {
     onUpdateTodo({ ...todo, title: workingTitle });
     setIsEditing(false);
   }
-  // function handleDelete(event) {
-  //   if (!isEditing) {
-  //     return;
-  //   }
-  //   event.preventDefault();
-  //   onDeleteTodo({ ...todo, title: workingTitle });
-  //   setIsEditing(false);
-  // }
-  // function eraserDelete(e) {
-  //   e.preventDefault();
-  //   onDeleteTodo({ ...todo, title: workingTitle });
-  // }
+  function handleDelete(e) {
+    e.preventDefault();
+    console.log({ ...todo, title: workingTitle });
+    onDeleteTodo({ ...todo, title: workingTitle });
+    setIsEditing(false);
+  }
+
   return (
     <li className={styles.todoContainer}>
       <form onSubmit={handleUpdate}>
@@ -55,7 +50,6 @@ function TodoListItem({ todo, onCompleteTodo, onUpdateTodo, onDeleteTodo }) {
           <div className={styles.todo}>
             <TextInputWithLabel
               value={workingTitle}
-              //take this
               onChange={handleEdit}
               ref={todoTitleInput}
               label=""
@@ -64,9 +58,6 @@ function TodoListItem({ todo, onCompleteTodo, onUpdateTodo, onDeleteTodo }) {
             <button type="button" onClick={handleCancel}>
               <FaBan size={16} />
             </button>
-            {/* <button type="button" onClick={handleDelete}>
-              Delete
-            </button> */}
             <button type="button" onClick={handleUpdate}>
               <FaArrowsRotate size={16} />
             </button>
@@ -85,15 +76,9 @@ function TodoListItem({ todo, onCompleteTodo, onUpdateTodo, onDeleteTodo }) {
               <>{todo.title}</>
               <ToolBar
                 pencilOnClick={() => setIsEditing(true)}
-                eraserOnClick={() =>
-                  onDeleteTodo({ ...todo, title: workingTitle })
-                }
+                eraserOnClick={handleDelete}
               />
             </span>
-            {/* <ToolBar
-              pencilOnClick={() => setIsEditing(true)}
-              eraserOnClick={() => setIsEditing(true) & handleDelete}
-            /> */}
           </>
         )}
       </form>
